@@ -33,7 +33,6 @@ func handle_dialogue_click(choice: DialogueChoice) -> void:
 		button.queue_free()
 	
 	dialogueButtons = []
-		
-		
+
 	load_next_node(choice.next_node_id)
 	

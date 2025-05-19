@@ -1,0 +1,17 @@
+{
+  "id": "ask_about_ring",
+  "text": "Do you know anything about this ring?",
+  "speaker": "Player",
+  "choices": [
+	{
+	  "text": "Ask about the ring",
+	  "next_id": "npc_response_ring",
+	  "conditions": [
+		{ "type": "has_item", "item_id": "mysterious_ring" }
+	  ],
+	  "effects": [
+		{ "type": "set_flag", "flag": "asked_about_ring" }
+	  ]
+	}
+  ]
+}

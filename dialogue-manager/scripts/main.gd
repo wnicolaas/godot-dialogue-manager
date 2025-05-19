@@ -14,6 +14,7 @@ func load_next_node(id: String) -> void:
 
 func draw_ui() -> void:
 	$Label.text = currentDialogueNode.text
+	$"Humor level".text = str(PlayerState.get_skill_level("humor"))
 	
 	var offset = 0
 	for choice in currentDialogueNode.choices:
@@ -21,6 +22,16 @@ func draw_ui() -> void:
 		choiceButton.size.x = 800;
 		choiceButton.text = choice.text;
 		choiceButton.position.y = 200 + offset;
+		
+		var fails_condition = false
+		for condition in choice.conditions:
+			if not condition.is_met():
+				fails_condition = true
+		
+		if fails_condition:
+			choiceButton.disabled = true
+			choiceButton.text += " [Disabled]"
+		
 		choiceButton.button_up.connect(func(): handle_dialogue_click(choice))
 		
 		offset += 50;
@@ -31,6 +42,9 @@ func draw_ui() -> void:
 func handle_dialogue_click(choice: DialogueChoice) -> void:
 	for button in dialogueButtons:
 		button.queue_free()
+	
+	for effect in choice.effects:
+		effect.apply()
 	
 	dialogueButtons = []
 

@@ -1,8 +1,8 @@
 [gd_scene load_steps=2 format=3 uid="uid://dul4qcmm20g6j"]
 
-[ext_resource type="Script" path="res://scripts/main.gd" id="1_ye2h2"]
+[ext_resource type="Script" path="res://scripts/Main.gd" id="1_ye2h2"]
 
-[node name="Main" type="Node2D"]
+[node name="POC" type="Node2D"]
 script = ExtResource("1_ye2h2")
 
 [node name="Label" type="Label" parent="."]

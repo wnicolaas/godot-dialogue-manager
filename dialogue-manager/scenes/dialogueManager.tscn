@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=3 uid="uid://b56ir0qksa5n7"]
+
+[ext_resource type="Script" path="res://scripts/DialogueManager.gd" id="1_umq6m"]
+
+[node name="DialogueManager" type="Node2D"]
+script = ExtResource("1_umq6m")
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD"]
+offset_left = 150.0
+offset_top = 100.0
+offset_right = 296.0
+offset_bottom = 166.0
+
+[node name="DialogueName" type="LineEdit" parent="HUD/VBoxContainer"]
+layout_mode = 2
+placeholder_text = "Dialogue name"
+
+[node name="AddDialogueButton" type="Button" parent="HUD/VBoxContainer"]
+layout_mode = 2
+text = "Add new dialogue"
+
+[node name="DialogueSelector" type="OptionButton" parent="HUD/VBoxContainer"]
+layout_mode = 2
+
+[connection signal="pressed" from="HUD/VBoxContainer/AddDialogueButton" to="." method="_on_add_dialogue_button_pressed"]

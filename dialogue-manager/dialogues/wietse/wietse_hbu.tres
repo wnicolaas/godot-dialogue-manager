@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="DialogueNode" load_steps=6 format=3 uid="uid://jii0yu80skif"]
 
-[ext_resource type="Script" path="res://scripts/DialogueChoice.gd" id="1_klews"]
-[ext_resource type="Script" path="res://scripts/DialogueCondition.gd" id="2_2txl5"]
-[ext_resource type="Script" path="res://scripts/DialogueNode.gd" id="2_xv7mj"]
-[ext_resource type="Script" path="res://scripts/DialogueEffect.gd" id="3_5bdjd"]
+[ext_resource type="Script" path="res://scripts/resources/DialogueChoice.gd" id="1_klews"]
+[ext_resource type="Script" path="res://scripts/resources/DialogueCondition.gd" id="2_2txl5"]
+[ext_resource type="Script" path="res://scripts/resources/DialogueNode.gd" id="2_xv7mj"]
+[ext_resource type="Script" path="res://scripts/resources/DialogueEffect.gd" id="3_5bdjd"]
 
 [sub_resource type="Resource" id="Resource_10qcd"]
 script = ExtResource("1_klews")

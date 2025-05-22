@@ -7,21 +7,64 @@ script = ExtResource("1_umq6m")
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HUD"]
-offset_left = 150.0
-offset_top = 100.0
-offset_right = 296.0
-offset_bottom = 166.0
+[node name="PreviewVbox" type="VBoxContainer" parent="HUD"]
+offset_right = 700.0
+offset_bottom = 400.0
 
-[node name="DialogueName" type="LineEdit" parent="HUD/VBoxContainer"]
+[node name="ColorRect" type="ColorRect" parent="HUD/PreviewVbox"]
 layout_mode = 2
+size_flags_vertical = 3
+color = Color(0.226707, 0.226707, 0.226707, 1)
+
+[node name="DialogueGroupVbox" type="VBoxContainer" parent="HUD"]
+offset_top = 400.0
+offset_right = 400.0
+offset_bottom = 646.0
+
+[node name="DialogueGroupControlsHbox" type="HBoxContainer" parent="HUD/DialogueGroupVbox"]
+layout_mode = 2
+
+[node name="DialogueGroupNameField" type="LineEdit" parent="HUD/DialogueGroupVbox/DialogueGroupControlsHbox"]
+layout_mode = 2
+size_flags_horizontal = 3
 placeholder_text = "Dialogue name"
+expand_to_text_length = true
 
-[node name="AddDialogueButton" type="Button" parent="HUD/VBoxContainer"]
+[node name="AddDialogueGroupButton" type="Button" parent="HUD/DialogueGroupVbox/DialogueGroupControlsHbox"]
 layout_mode = 2
+size_flags_horizontal = 3
 text = "Add new dialogue"
 
-[node name="DialogueSelector" type="OptionButton" parent="HUD/VBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="HUD/DialogueGroupVbox"]
 layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
 
-[connection signal="pressed" from="HUD/VBoxContainer/AddDialogueButton" to="." method="_on_add_dialogue_button_pressed"]
+[node name="DialogueGroupSelectorVbox" type="VBoxContainer" parent="HUD/DialogueGroupVbox/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ColorRect" type="ColorRect" parent="HUD/DialogueGroupVbox/ScrollContainer/DialogueGroupSelectorVbox"]
+layout_mode = 2
+size_flags_vertical = 3
+color = Color(0.409503, 0.395267, 0.54678, 1)
+
+[node name="ScrollContainer" type="ScrollContainer" parent="HUD"]
+offset_left = 400.0
+offset_top = 400.0
+offset_right = 700.0
+offset_bottom = 646.0
+horizontal_scroll_mode = 0
+
+[node name="ScriptSelectionVbox" type="VBoxContainer" parent="HUD/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ColorRect" type="ColorRect" parent="HUD/ScrollContainer/ScriptSelectionVbox"]
+layout_mode = 2
+size_flags_vertical = 3
+color = Color(0.0964305, 0.160456, 0.13198, 1)
+
+[connection signal="pressed" from="HUD/DialogueGroupVbox/DialogueGroupControlsHbox/AddDialogueGroupButton" to="." method="_on_add_dialogue_group_button_pressed"]

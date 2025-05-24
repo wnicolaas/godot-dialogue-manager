@@ -14,21 +14,7 @@ var NodeSelectionVbox = $HUD/NodeSelectionContainer/NodeSelectionVbox
 @onready
 var NoNodesDisplay = $HUD/NodeSelectionContainer/NodeSelectionVbox/NoNodes
 
-### Dialogue node editor ###
-@onready
-var DialogueNodeIdInput = $HUD/DialogueNodeContainer/Vbox/NodeIdInput
 
-@onready
-var ActorIdInput = $HUD/DialogueNodeContainer/Vbox/ActorIdInput
-
-@onready
-var DialogueNodeTextEditor = $HUD/DialogueNodeContainer/Vbox/NodeTextEdit
-
-@onready
-var NoGroupDisplay = $HUD/DialogueNodeContainer/NoGroupSelected
-
-@onready 
-var DialogueNodeWindow = $HUD/DialogueNodeContainer/Vbox
 
 enum ContentType {
 	FILE,
@@ -105,19 +91,18 @@ func _on_dialogue_group_button_pressed(button: Button, dialogue_folder_name: Str
 			
 	var node_path_prefix = "/" + dialogue_folder_name
 	
-	NoGroupDisplay.visible = false
-	DialogueNodeWindow.visible = true
+	$HUD/NodeEditor.toggle_display()
 	
 	var resourceNames = list_directory_contents(
 		dialogue_root_path + "/" + node_path_prefix,
 		ContentType.FILE)
-		
+
 	if resourceNames.is_empty():
 		NoNodesDisplay.visible = true
 		return
 
 	NoNodesDisplay.visible = false
-		
+
 	for resource in resourceNames:
 		var nodeButton = Button.new()
 		nodeButton.text = resource
@@ -126,40 +111,4 @@ func _on_dialogue_group_button_pressed(button: Button, dialogue_folder_name: Str
 	
 	
 func _on_node_button_pressed(node_path):
-	self.selected_dialog_file_path = dialogue_root_path + node_path
-	self.selected_dialog_node = load(self.selected_dialog_file_path) as DialogueNode
-
-	DialogueNodeIdInput.text = self.selected_dialog_node.id
-	ActorIdInput.text = self.selected_dialog_node.actor_id
-	DialogueNodeTextEditor.text = self.selected_dialog_node.text
-
-func _on_save_pressed() -> void:
-	self.selected_dialog_node.id = DialogueNodeIdInput.text 
-	self.selected_dialog_node.actor_id = ActorIdInput.text
-	self.selected_dialog_node.text = DialogueNodeTextEditor.text
-	
-	ensure_user_folders_exist(selected_dialog_file_path)
-	
-	var error = ResourceSaver.save(selected_dialog_node, selected_dialog_file_path)
-	
-	if error:
-		push_error(error)
-
-
-# As the resource saver cannot create folders, this creates any missing folders from a save path
-func ensure_user_folders_exist(path: String):
-	var dir = DirAccess.open("user://")
-	if not dir:
-		push_error("No access to user directory")
-		return
-
-	var parts = path.replace("user://", "").split("/")
-	parts.remove_at(parts.size() - 1)  # Remove the file itself, we only need the directories
-	var current_path = "user://"
-
-	for folder in parts:
-		current_path += folder + "/"
-		if not DirAccess.dir_exists_absolute(current_path):
-			var err = DirAccess.make_dir_absolute(current_path)
-			if err != OK:
-				push_error("Failed to create folder: %s (error %d)" % [current_path, err])
+	$HUD/NodeEditor.load_node(dialogue_root_path + node_path)

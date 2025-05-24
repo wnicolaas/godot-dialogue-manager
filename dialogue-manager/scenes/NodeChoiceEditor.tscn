@@ -1,0 +1,50 @@
+[gd_scene load_steps=3 format=3 uid="uid://bklpxlcp3twf7"]
+
+[ext_resource type="Script" path="res://scripts/NodeChoiceEditor.gd" id="1_5wxue"]
+[ext_resource type="PackedScene" uid="uid://bsbcp0mokdvsx" path="res://scenes/ConditionEditor.tscn" id="2_mmsr5"]
+
+[node name="NodeChoiceEditor" type="VBoxContainer"]
+script = ExtResource("1_5wxue")
+metadata/_tab_index = 0
+
+[node name="ChoiceTextLabel" type="Label" parent="."]
+layout_mode = 2
+text = "Choice text"
+
+[node name="ChoiceTextInput" type="TextEdit" parent="."]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+placeholder_text = "What the player can say"
+wrap_mode = 1
+
+[node name="NextNodeIdLabel" type="Label" parent="."]
+layout_mode = 2
+text = "Next node id"
+
+[node name="NextNodeIdInput" type="LineEdit" parent="."]
+layout_mode = 2
+
+[node name="ConditionEffectTabs" type="TabContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+current_tab = 0
+
+[node name="Conditions" type="HBoxContainer" parent="ConditionEffectTabs"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="ConditionSelectorContainer" type="VBoxContainer" parent="ConditionEffectTabs/Conditions"]
+layout_mode = 2
+
+[node name="AddConditionButton" type="Button" parent="ConditionEffectTabs/Conditions/ConditionSelectorContainer"]
+layout_mode = 2
+text = "Add condition
+"
+
+[node name="ConditionEditor" parent="ConditionEffectTabs/Conditions" instance=ExtResource("2_mmsr5")]
+layout_mode = 2
+
+[node name="Effects" type="VBoxContainer" parent="ConditionEffectTabs"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1

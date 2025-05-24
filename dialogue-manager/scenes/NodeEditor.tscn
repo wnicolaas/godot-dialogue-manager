@@ -1,0 +1,91 @@
+[gd_scene load_steps=4 format=3 uid="uid://c5wtl6c45vhs"]
+
+[ext_resource type="Script" path="res://scripts/NodeEditor.gd" id="1_el4ga"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h3odh"]
+bg_color = Color(0.426897, 0.080636, 0.0782976, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rhhvv"]
+bg_color = Color(0.117447, 0.300194, 0.077316, 1)
+
+[node name="NodeEditor" type="VBoxContainer"]
+offset_left = 700.0
+offset_right = 1152.0
+offset_bottom = 648.0
+script = ExtResource("1_el4ga")
+
+[node name="Vbox" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="DialogueNodeOptions" type="HBoxContainer" parent="Vbox"]
+layout_mode = 2
+
+[node name="Delete" type="Button" parent="Vbox/DialogueNodeOptions"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_h3odh")
+text = "Delete"
+
+[node name="Save" type="Button" parent="Vbox/DialogueNodeOptions"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_rhhvv")
+text = "Save"
+
+[node name="IdLabel" type="Label" parent="Vbox"]
+layout_mode = 2
+text = "Node Id"
+
+[node name="NodeIdInput" type="LineEdit" parent="Vbox"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+placeholder_text = "Node Id"
+
+[node name="ActorIdLabel" type="Label" parent="Vbox"]
+layout_mode = 2
+text = "Actor Id"
+
+[node name="ActorIdInput" type="LineEdit" parent="Vbox"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+placeholder_text = "The Id of the NPC speaking in this node"
+
+[node name="NodeTextLabel" type="Label" parent="Vbox"]
+layout_mode = 2
+text = "Node text"
+
+[node name="NodeTextEdit" type="TextEdit" parent="Vbox"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+placeholder_text = "What the NPC says"
+wrap_mode = 1
+
+[node name="NodeChoiceContainer" type="TabContainer" parent="Vbox"]
+layout_mode = 2
+
+[node name="NoGroupSelected" type="ColorRect" parent="."]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+color = Color(0.258769, 0.0516462, 0.15595, 1)
+
+[node name="Label" type="Label" parent="NoGroupSelected"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -11.5
+offset_right = 64.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+text = "No group selected"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="Vbox/DialogueNodeOptions/Save" to="." method="_on_save_pressed"]

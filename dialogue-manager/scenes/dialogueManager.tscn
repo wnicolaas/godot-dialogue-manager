@@ -1,12 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://b56ir0qksa5n7"]
+[gd_scene load_steps=3 format=3 uid="uid://b56ir0qksa5n7"]
 
 [ext_resource type="Script" path="res://scripts/DialogueManager.gd" id="1_umq6m"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h3odh"]
-bg_color = Color(0.426897, 0.080636, 0.0782976, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rhhvv"]
-bg_color = Color(0.117447, 0.300194, 0.077316, 1)
+[ext_resource type="PackedScene" uid="uid://c5wtl6c45vhs" path="res://scenes/NodeEditor.tscn" id="2_dcsds"]
 
 [node name="DialogueManager" type="Node2D"]
 script = ExtResource("1_umq6m")
@@ -109,80 +104,6 @@ text = "No nodes found"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="DialogueNodeContainer" type="VBoxContainer" parent="HUD"]
-offset_left = 700.0
-offset_right = 1152.0
-offset_bottom = 648.0
-
-[node name="Vbox" type="VBoxContainer" parent="HUD/DialogueNodeContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="DialogueNodeOptions" type="HBoxContainer" parent="HUD/DialogueNodeContainer/Vbox"]
-layout_mode = 2
-
-[node name="Delete" type="Button" parent="HUD/DialogueNodeContainer/Vbox/DialogueNodeOptions"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/normal = SubResource("StyleBoxFlat_h3odh")
-text = "Delete"
-
-[node name="Save" type="Button" parent="HUD/DialogueNodeContainer/Vbox/DialogueNodeOptions"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/normal = SubResource("StyleBoxFlat_rhhvv")
-text = "Save"
-
-[node name="IdLabel" type="Label" parent="HUD/DialogueNodeContainer/Vbox"]
-layout_mode = 2
-text = "Node Id"
-
-[node name="NodeIdInput" type="LineEdit" parent="HUD/DialogueNodeContainer/Vbox"]
-custom_minimum_size = Vector2(0, 30)
-layout_mode = 2
-placeholder_text = "Node Id"
-
-[node name="ActorIdLabel" type="Label" parent="HUD/DialogueNodeContainer/Vbox"]
-layout_mode = 2
-text = "Actor Id"
-
-[node name="ActorIdInput" type="LineEdit" parent="HUD/DialogueNodeContainer/Vbox"]
-custom_minimum_size = Vector2(0, 30)
-layout_mode = 2
-placeholder_text = "The Id of the NPC speaking in this node"
-
-[node name="NodeTextLabel" type="Label" parent="HUD/DialogueNodeContainer/Vbox"]
-layout_mode = 2
-text = "Node text"
-
-[node name="NodeTextEdit" type="TextEdit" parent="HUD/DialogueNodeContainer/Vbox"]
-custom_minimum_size = Vector2(0, 150)
-layout_mode = 2
-placeholder_text = "What the NPC says"
-wrap_mode = 1
-
-[node name="NoGroupSelected" type="ColorRect" parent="HUD/DialogueNodeContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-color = Color(0.258769, 0.0516462, 0.15595, 1)
-
-[node name="Label" type="Label" parent="HUD/DialogueNodeContainer/NoGroupSelected"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -64.0
-offset_top = -11.5
-offset_right = 64.0
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_vertical = 3
-text = "No group selected"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="NodeEditor" parent="HUD" instance=ExtResource("2_dcsds")]
 
 [connection signal="pressed" from="HUD/DialogueGroupVbox/DialogueGroupControlsHbox/AddDialogueGroupButton" to="." method="_on_add_dialogue_group_button_pressed"]
-[connection signal="pressed" from="HUD/DialogueNodeContainer/Vbox/DialogueNodeOptions/Save" to="." method="_on_save_pressed"]
